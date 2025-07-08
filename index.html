@@ -7,13 +7,22 @@
   <title>To-Do</title>
   <script defer src="app.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body >
   <div class="min-h-screen bg-orange-200 flex items-center justify-center p-4">
     <div class="w-full max-w-md bg-slate-100 rounded-2xl shadow-lg p-6 space-y-6">
       <!-- Header -->
-      <h1 class=" text-3xl font-bold text-center text-slate-700">Todo List</h1>
+      <div class=" flex justify-center gap-2">
+        <h1 
+          class=" text-3xl font-bold text-center text-slate-700"
+          >Todo List</h1>
+        <i 
+          data-lucide="notebook-pen" 
+          class="w-8 h-8 text-slate-700 items-center"></i>
+
+      </div>
 
       <!-- Input -->
       <div class="flex items-center border rounded-lg overflow-hidden shadow-sm">
@@ -60,6 +69,13 @@
   </div>
 
 
+
+  <script>
+    // Render the Lucide icon
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
 <!-- Development Version-->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 <!-- Production Version-->
