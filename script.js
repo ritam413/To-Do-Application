@@ -12,9 +12,11 @@ function addingInTextArea(text) {
     const span = document.createElement('span')
 
     span.textContent = text;
+    span.className = ('line-through  text-green-500 ')
+
 
     li.appendChild(span)
-    li.className = "flex justify-between items-center px-4 py-2 bg-slate-100 rounded-md shadow-sm"
+    li.className = "flex justify-between items-center px-4 py-2 bg-slate-100 rounded-md shadow-sm  "
     taskList.appendChild(li)
 }
 function addTask(text) {
@@ -81,6 +83,7 @@ function updateTextAreaWithCompletedTask() {
     for (const task of completedTask) {
         const text = task.span.textContent
         addingInTextArea(text)
+
     }
 
 }//fucntion to log completed task inconsole log
@@ -99,7 +102,14 @@ function updateTextAreaWithOngoingTask() {
 
     for (const task of onGoingTask) {
         const text = task.span.textContent
-        addingInTextArea(text)
+        const li = document.createElement('li')
+        const span = document.createElement('span')
+
+        span.textContent = text;
+
+        li.appendChild(span)
+        li.className = "flex justify-between items-center px-4 py-2 bg-slate-100 rounded-md shadow-sm  "
+        taskList.appendChild(li)
     }
 }
 
@@ -118,28 +128,46 @@ function updateTextAreaWithAllTask() {
 
 
         li.className = "flex justify-between items-center px-4 py-2 bg-slate-100 rounded-md shadow-sm"
-        taskList.appendChild(li)
+
         const checkBoxesOnGoing = document.createElement('input')
         checkBoxesOnGoing.type = "checkbox"
         checkBoxesOnGoing.className = "flex justify-end w-4 h-4 accent-indigo-600";
+        checkBoxesOnGoing.isOngoing = checkBoxesOnGoing.checked
+
         const checkBoxesCompleted = document.createElement('input')
         checkBoxesCompleted.type = "checkbox"
         checkBoxesCompleted.className = "flex justify-end w-4 h-4 accent-indigo-600";
+        checkBoxesCompleted.isCompleted = alltasks.checked
+
+        checkBoxesOnGoing.onchange = () => {
+            alltasks.isOngoing = checkBoxesOnGoing.checked;
+        }
+
+        checkBoxesCompleted.onchange = () => {
+            alltasks.isCompleted = checkBoxesOnGoing.checked
+        }
 
         const checkboxSpan = document.createElement('span')
         checkboxSpan.className = 'flex flex-row gap-2'
-
         checkboxSpan.appendChild(checkBoxesOnGoing)
         checkboxSpan.appendChild(checkBoxesCompleted)
 
         li.appendChild(span)
         li.appendChild(checkboxSpan)
+        taskList.appendChild(li)
+
+        alltasks.elements = {
+            li,
+            span,
+            checkBoxesOnGoing,
+            checkBoxesCompleted
+        }
     }
 
     task.push({
         id: count,
         text: text,
-        isOngoing: false,
+        isOngoing: true,
         isCompleted: false,
         elements: {
             li,
