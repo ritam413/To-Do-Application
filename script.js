@@ -12,7 +12,7 @@ function addingInTextArea(text) {
     const span = document.createElement('span')
 
     span.textContent = text;
-    span.className = ('line-through  text-green-500 ')
+    span.className = ('line-through  text-green-500 opacity-60 ')
 
 
     li.appendChild(span)
